@@ -21,6 +21,15 @@ public class Console {
 
     }
 
+    public static float promptForFloat(String prompt) {
+
+        System.out.print(prompt);
+        float result =  scanner.nextFloat();
+        scanner.nextLine();
+        return result;
+
+    }
+
     /**
      * Prompts the user for a string.
      * @param prompt to display the user
@@ -58,6 +67,14 @@ public class Console {
         String userInput = scanner.nextLine();
         return userInput.equalsIgnoreCase("YES");
         //opportunity to enhance this with some error protection.
+    }
+
+    public static long promptForLong(String prompt){
+        System.out.println(prompt);
+        long userInput = scanner.nextLong();
+        scanner.nextLine();
+
+        return userInput;
     }
 
 }

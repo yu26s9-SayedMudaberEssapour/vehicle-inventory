@@ -2,11 +2,13 @@ package com.pluralsight;
 
 
 public class Vehicle {
-    long vehicleId;
-    String makeModel;
-    String color;
-    int odemeterReading;
-    float price;
+
+
+    private long vehicleId;
+    private String makeModel;
+    private String color;
+    private int odemeterReading;
+    private float price;
 
 
     public Vehicle(long vehicleId, String makeModel, String color, int odemeterReading, float price){
@@ -57,26 +59,108 @@ public class Vehicle {
         this.price = price;
     }
 
-    Console console = new Console();
-
-    public static String loopMaker(Console console){
-        System.out.println("What do you want to do?");
-        System.out.println();
-
-        System.out.println("1 - List all vehicles");
-        System.out.println("2 - Search by make/model");
-        System.out.println("3 - Search by price range");
-        System.out.println("4 - Search by color");
-        System.out.println("5 - Add a vehicle");
-        System.out.println("6 - Quit");
-        System.out.println();
-
-        System.out.println("Enter your command");
-        console.inputInt(scanner);
 
 
+    public static void listAllVehicles(Vehicle[] vehicles){
+
+        for(int i = 0; i < 6; i++){
+
+            System.out.println("The vehicle id is: " + vehicles[i].getVehicleId());
+            System.out.println("The vehicle make model is: " + vehicles[i].getMakeModel());
+            System.out.println("The vehicle color: "+ vehicles[i].getColor());
+            System.out.println("The vehicle Odometer: " + vehicles[i].getOdemeterReading());
+            System.out.println("Price of the vehicle: " + vehicles[i].getVehicleId());
+            System.out.println();
+        }
+
+
+    }
+
+
+    public static String SearchByMakeModel(Vehicle[] vehicles){
+
+        //here you will go through the list of cars and then look for the model of the vehicle.
+
+        int i = 0;
+        String model = "nothing is returned";
+        //fix this to the length of the list
+        while (i < 6){
+            if (vehicles[i] != null){
+                model = vehicles[i].getMakeModel();
+            }
+            i++;
+
+        }
+        return model;
+    }
+
+
+
+    public static double[] findVehiclesByPrice(Vehicle[] value){
+
+
+        double[] prices = new double[value.length];
+
+        int i = 0;
+        //fix this to the length of the list
+        while (i < value.length){
+            if (value[i] != null){
+                prices[i] = (value[i].getPrice());
+            }
+            i++;
+
+        }
+        return prices;
+    }
+
+
+    public static String searchByColor(Vehicle[] vehicles){
+
+        int i = 0;
+        String color = "";
+        //fix this to the length of the list
+        while (i < 6){
+            if (vehicles[i] != null){
+                color = vehicles[i].getColor();
+            }
+            i++;
+
+        }
+        return color;
+    }
+
+
+
+
+    public static void addAVehicle(Vehicle[] value){
+
+        Console console1 = new Console();
+
+
+        long vehicleId = console1.promptForLong("Please enter the vehicelID: ");
+        String makeModel = console1.promptForString("Pleaes enter a make or model: ");
+        String color = console1.promptForString("please enter the color of the car: ");
+        int odemeterReading = console1.promptForInt("Please enter an odometer value: ");
+        float price = console1.promptForFloat("please enter a price: ");
+
+
+        int size = 0;
+        for(Vehicle item : value){
+            if (item != null){
+                size ++;
+            }
+        }
+
+
+
+        Vehicle newCar = new Vehicle(vehicleId, makeModel, color, odemeterReading, price);
+
+        value[size] = newCar;
 
 
 
     }
+
+
+
 }
